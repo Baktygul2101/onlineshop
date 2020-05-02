@@ -1,3 +1,4 @@
+
 ALTER TABLE `products`
  ADD COLUMN `category_id` INT NOT NULL after `price`,
  ADD CONSTRAINT `fk_product__categories`
