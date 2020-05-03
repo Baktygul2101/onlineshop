@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @Data
@@ -16,6 +17,7 @@ public class Brand{
     @Id
     @GeneratedValue
     private int id;
+    @NotBlank
     private String brandName;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "brand")

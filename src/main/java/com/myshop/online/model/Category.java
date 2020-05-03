@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Data
@@ -16,7 +18,9 @@ public class Category{
     @Id
     @GeneratedValue
     private int id;
+    @NotBlank
     private String categoryName;
+    @NotNull
     private String description;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "category")

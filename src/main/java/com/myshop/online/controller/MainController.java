@@ -23,6 +23,15 @@ public class MainController {
         return "index";
     }
 
+    @GetMapping("/registration")
+    public String registration(Model model) {
+        return "registration";
+    }
+    @GetMapping("/login")
+    public String login(Model model) {
+        return "login";
+    }
+
  //  <p>${pr.id} - ${pr.name} - ${pr.image} - ${pr.quantity} -${pr.description}-${pr.price}</p>
   //  @GetMapping
   /*  public String root(Model model) {
@@ -32,13 +41,13 @@ public class MainController {
 
 
 
- /*   @RequestMapping("/")
+ /*   @GetMapping("/")
     public String getMainPage(Model model) {
         model.addAttribute("products", repo.findAll());
         return "index";
     }
 
-    @RequestMapping("/jql/{name}")
+    @GetMapping("/jql/{name}")
     public String getMainPageJql(Model model, @PathVariable("name") String name) {
         model.addAttribute("products", repo.getByName(name));
         return "index";

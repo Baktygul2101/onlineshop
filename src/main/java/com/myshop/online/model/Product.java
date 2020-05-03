@@ -5,6 +5,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
 
 @Data
 @AllArgsConstructor
@@ -15,10 +19,15 @@ public class Product{
     @Id
     @GeneratedValue
     private int id;
+    @NotNull
     private String name;
     private String image;
+
+    @PositiveOrZero
     private int quantity;
+    @NotBlank
     private String description;
+    @Positive
     private double price;
 
     @ManyToOne
