@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -22,48 +23,21 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotNull
-    private String name;
-
-    @NotNull(message = "Адрес должен быть задан, для доставки")
-    private String address;
-    @NotNull
-    private String phoneNumber;
-
-    @NotNull
-    @Pattern(regexp = "^(?:[a-zA-Z0-9_'^&/+-])+(?:\\.(?:[a-zA-Z0-9_'^&/+-])+)" +
-            "*@(?:(?:\\[?(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?))\\.)" +
-            "{3}(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\]?)|(?:[a-zA-Z0-9-]+\\.)" +
-            "+(?:[a-zA-Z]){2,}\\.?)$",
-            message = "заданный имэйл не может существовать")
+    @NotBlank
+    @Size(min = 1, max = 128)
+    @Column(length = 128)
     private String email;
 
-    @NotNull
-    @Size(min = 5, max = 8)
-    String password;
+    @NotBlank
+    @Size(min = 1, max = 128)
+    @Column(length = 128)
+    private String password;
 
+    @NotBlank
+    @Size(min = 1, max = 128)
+    @Column(length = 128)
+    private String name;
 
-    public Customer(String email, String name, String address,String phoneNumber, String password) {
-        this.email = email;
-        this.name = name;
-        this.address = address;
-       // this.password = new BCryptPasswordEncoder().encode(password);
-        this.password = password;
-    }
-
-    public static void validate(Object object, Validator validator) {
-        Set<ConstraintViolation<Object>> constraintViolations = validator
-                .validate(object);
-
-        System.out.println(object);
-        System.out.println(String.format("Кол-во ошибок: %d",
-                constraintViolations.size()));
-
-        for (ConstraintViolation<Object> cv : constraintViolations)
-            System.out.println(String.format(
-                    "Внимание, ошибка! property: [%s], value: [%s], message: [%s]",
-                    cv.getPropertyPath(), cv.getInvalidValue(), cv.getMessage()));
-    }
 }
 
 

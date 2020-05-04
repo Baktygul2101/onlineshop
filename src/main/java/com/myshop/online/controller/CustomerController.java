@@ -1,33 +1,65 @@
 package com.myshop.online.controller;
 
-
-import com.myshop.online.model.Customer;
-import com.myshop.online.repository.CustomerRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import com.myshop.online.model.CustomerRegistrationForm;
+import javassist.NotFoundException;
+import lombok.AllArgsConstructor;
+import lombok.var;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindException;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
-@RestController
+import static java.util.stream.Collectors.toList;
+
+@Controller
+@RequestMapping
+@AllArgsConstructor
 public class CustomerController {
 
-    @Autowired
-    private CustomerRepository repo;
+    @GetMapping("/register")
+    public String pageRegistrationCustomer(Model model) {
+        if(!model.containsAttribute("form")){
+            model.addAttribute("form", new CustomerRegistrationForm());
+        }
 
-    @PostMapping("/registration")
-    public Customer createComment(@Valid @RequestParam("email") String email, @RequestParam("name") String name,
-                                  @RequestParam("phoneNumber") String phoneNumber, @RequestParam("address") String address, @RequestParam("login") String login, @RequestParam("password") String password) {
-        Customer p = new Customer(email, name,address,phoneNumber, password);
-        repo.save(p);
-        return p;
+        return "register";
     }
 
-    @PostMapping("/login")
-    public Customer makeLogin(@RequestParam("email") String email, @RequestParam("password") String password) {
+    @PostMapping("/register")
+    public String RegistrationPage(@Valid CustomerRegistrationForm form,
+                                   BindingResult validationResult,
+                                   RedirectAttributes attributes) {
+        attributes.addFlashAttribute("form", form);
 
-        Customer p = repo.findByEmail(email).get();
-        repo.save(p);
-        return p;
+
+        if(validationResult.hasFieldErrors()){
+            attributes.addFlashAttribute("errors", validationResult.getFieldErrors());
+            return "redirect:/register";
+        }
+
+        return "redirect:/";
+    }
+
+    @ExceptionHandler(BindException.class)
+    private ResponseEntity<Object> handleBindExceptionResponseEntity(BindException ex){
+        var apiFieldErrors=ex.getFieldErrors()
+                .stream()
+                .map(fe->String.format("%s ->%s",fe.getField(), fe.getDefaultMessage()))
+                .collect(toList());
+
+        return ResponseEntity.unprocessableEntity()
+                .body(apiFieldErrors);
     }
 
 }

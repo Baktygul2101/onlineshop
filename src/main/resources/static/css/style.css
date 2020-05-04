@@ -1,4 +1,132 @@
-.fakeimg {
-    height: 200px;
-    background: #aaa;
+body{
+	font-family: 'Raleway', sans-serif;
 }
+.header{
+	background-color: #5bbc2e;
+}
+.nav-link{
+	font-size: 13px;
+	font-weight: 600;
+}
+.btn-user{
+	background-color:#23a321;
+	border-radius: 7%;
+	border: none;
+	padding: 8px 25px;
+	color: #fff;
+	font-size: 14px;
+	font-weight: 700;
+}
+.carousel-indicators li{
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	border: 2px solid #5bbc2e;
+	background-color: transparent;
+	opacity: 1;
+}
+.carousel-indicators .active{
+	width: 8px;
+	height: 8px;
+	background-color:  #5bbc2e;
+	margin-top: 2px;
+}
+.carousel-headline{
+	font-size: 48px;
+	color: #000;
+	font-weight: 800;
+}
+.slide-text{
+	color: #5bbc2e;
+	font-size: 48px;
+	font-weight: 800;
+	text-transform: uppercase;
+}
+.job h2{
+	color: #8d8d8d;
+	font-size: 30px;
+	font-weight: 800;
+}
+.job p{
+	font-size: 15px;
+	font-weight: 400;
+	color: #767575;
+}
+.work-talent{
+	background-color:#f5f5f5;
+}
+.great-list p{
+	color: #8d8d8d;
+	font-size: 30px;
+	font-weight: 800;
+}
+.great-list li {
+	list-style-image: url(../images/arrow.png);
+	font-size: 15px;
+	font-weight: 400;
+	color: #767575;
+}
+.board{
+	color: #8d8d8d;
+	font-size: 30px;
+	font-weight: 800;
+}
+.card-title{
+	font-size: 14px;
+	color: #4b4b4b;
+	font-weight: 800;
+	text-transform: uppercase;
+	text-align: center;
+	padding-top: 20px;
+	margin-bottom: 0;
+}
+.card-body a{
+	font-size: 12px;
+	color: #fff;
+	font-weight: 800;
+	text-transform: uppercase;
+	text-align: center;
+	border-radius: 0;
+}
+.btn-primary-17 {
+	background-color: #00bfff;
+}
+.btn-primary-25{
+	background-color: #80ff00;
+}
+.btn-primary-38{
+	background-color: #bf00ff;
+}
+.btn-primary-46{
+	background-color: #ffbf00;
+}
+.footer{
+	color: #e0e0e0;
+	font-size: 12px;
+	background-color: #141414;
+	padding: 30px 0;
+	text-transform: uppercase;
+	margin-top: 110px;
+}
+.modal-header{
+	background-color: #5bbc2e;
+}
+.modal-title{
+	text-align: center;
+	color: #fff;
+	text-transform: uppercase;
+}
+.form-group{
+	padding: 10px 5px;
+}
+.form-group label{
+	color: #1C5030;
+	font-weight: bold;
+}
+.send-btn{
+	text-align: center;
+}
+.btn{
+	padding: 5px 40px;
+	text-transform: uppercase;
+	}

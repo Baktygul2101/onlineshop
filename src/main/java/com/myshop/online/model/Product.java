@@ -19,7 +19,7 @@ public class Product{
     @Id
     @GeneratedValue
     private int id;
-    @NotNull
+    @NotBlank
     private String name;
     private String image;
 
