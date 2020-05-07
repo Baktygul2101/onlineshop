@@ -1,16 +1,49 @@
 package com.myshop.online.service;
 
 
-import com.myshop.online.model.Product;
+import com.myshop.online.exception.ResourceNotFoundException;
+import com.myshop.online.dto.ProductDTO;
 import com.myshop.online.repository.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
+import lombok.var;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
+@AllArgsConstructor
 public class ProductService {
-    @Autowired
+
+    private final ProductRepository productRepository;
+
+    public Page<ProductDTO> getProducts(int id, Pageable pageable) {
+        return productRepository.findAllByCategoryId(id, pageable)
+                .map(ProductDTO::from);
+        //.toList();
+    }
+
+    public ProductDTO getProduct(int id) {
+        var place = productRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("product", id));
+        return ProductDTO.from(place);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*  @Autowired
     private ProductRepository repository;
 
     public Product saveProduct(Product product){
@@ -46,5 +79,5 @@ public class ProductService {
         existingProduct.setQuantity(product.getQuantity());
         existingProduct.setPrice(product.getPrice());
         return repository.save(existingProduct);
-    }
+    }*/
 }

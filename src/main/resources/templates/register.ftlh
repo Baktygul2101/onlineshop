@@ -9,21 +9,38 @@
 <form action="/register" method="post">
     <div>
         <label class="flex flex-v-center">
-            <p class="label-input-text">email: </p>
-            <input type="email" name="email" placeholder="Your email" value="${(form.email)}">
+            <p class="label-input-text">Имя:</p>
+            <input type="text" name="name" placeholder="ваше имя"  value="${(form.name)!''}">
+        </label>
+    </div>
+    <div>
+        <label class="flex flex-v-center">
+            <p class="label-input-text">Имя:</p>
+            <input type="text" name="address" placeholder="ваш адрес"  value="${(form.address)!''}">
+        </label>
+    </div>
+    <div>
+        <label class="flex flex-v-center">
+            <p class="label-input-text">Имя:</p>
+            <input type="text" name="phoneNumber" placeholder="ваш телефон"  value="${(form.phoneNumber)!''}">
+        </label>
+    </div>
+    <div>
+        <label class="flex flex-v-center">
+            <p class="label-input-text">Адрес почты:</p>
+            <input type="text" name="email" placeholder="ваш адрес почты"  value="${(form.email)!''}" >
         </label>
     </div>
 
 
     <div>
         <label class="flex flex-v-center">
-            <p class="label-input-text">Name: </p>
-            <input type="text" name="name" placeholder="Your name" value="${(form.name)}">
-
+            <p class="label-input-text">Пароль:</p>
+            <input type="text" name="password" placeholder="ваш пароль"  value="${(form.password)!''}" >
         </label>
     </div>
     <div>
-        <button type="submit">Registration</button>
+        <button type="submit">Регистрация</button>
     </div>
     <div>
         <#if errors?? >

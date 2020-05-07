@@ -1,25 +1,16 @@
 package com.myshop.online.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.myshop.online.model.Customer;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import com.myshop.online.model.CustomerRegistrationForm;
-import javassist.NotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.var;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-
 import static java.util.stream.Collectors.toList;
 
 @Controller
@@ -30,14 +21,14 @@ public class CustomerController {
     @GetMapping("/register")
     public String pageRegistrationCustomer(Model model) {
         if(!model.containsAttribute("form")){
-            model.addAttribute("form", new CustomerRegistrationForm());
+            model.addAttribute("form", new Customer());
         }
 
         return "register";
     }
 
     @PostMapping("/register")
-    public String RegistrationPage(@Valid CustomerRegistrationForm form,
+    public String RegistrationPage(@Valid Customer form,
                                    BindingResult validationResult,
                                    RedirectAttributes attributes) {
         attributes.addFlashAttribute("form", form);

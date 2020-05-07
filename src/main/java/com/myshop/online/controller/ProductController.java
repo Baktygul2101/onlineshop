@@ -2,17 +2,23 @@ package com.myshop.online.controller;
 
 
 
-import com.myshop.online.model.Product;
+import com.myshop.online.dto.ProductDTO;
 import com.myshop.online.service.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/products")
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class ProductController {
-    @Autowired
+    private final ProductService productService;
+
+
+   /* @Autowired
     private ProductService service;
 
     @PostMapping ("/addProduct")
@@ -47,6 +53,6 @@ public class ProductController {
     @DeleteMapping("/delete/{id}")
     public String deleteProduct(@PathVariable int id){
         return  service.deleteProduct(id);
-    }
+    }*/
 }
 

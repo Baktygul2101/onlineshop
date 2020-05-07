@@ -1,7 +1,7 @@
 'use strict';
 window.addEventListener('load', function () {
 
-    const BASE_URL = 'http://localhost:8989';
+    const BASE_URL = 'http://localhost:5959';
 
     const loginForm = document.getElementById('login-form');
     loginForm.addEventListener('submit', onLoginHandler);

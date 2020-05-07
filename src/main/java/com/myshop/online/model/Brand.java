@@ -12,15 +12,32 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table (name = "brands")
+@Table (name = "brands", schema = "myshop")
 public class Brand{
     @Id
     @GeneratedValue
     private int id;
     @NotBlank
+    @Column
     private String brandName;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "brand")
+    @OneToMany(fetch = FetchType.LAZY)
     @OrderBy("name ASC")
     List<Product> products;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getBrandName() {
+        return brandName;
+    }
+
+    public void setBrandName(String brandName) {
+        this.brandName = brandName;
+    }
 }
